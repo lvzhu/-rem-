@@ -1,0 +1,40 @@
+//将此放在head里即可
+<script type="text/javascript">
+    	window.fontSizeScale=1,
+		function(e){
+			var t=document,
+		  	n=t.documentElement,
+		  	r=function(){
+		    		var e=n.clientWidth||n.getBoundingClientRect().width;
+		    		return e;
+		  	},
+		  	i=function(){
+		    		var e=r();
+		    		e&&(n.style.fontSize=Math.floor((100*(e/1920)*fontSizeScale)*100000)/100000+"px")
+		  	},
+		  	s=function(){
+		    		var t=document.createElement("div");
+		    		t.id="p-tmp",
+		    		document.body.appendChild(t),
+		      	t.style.width="1rem",
+		      	t.style.height="1px",
+		      	t.style.position="absolute",
+		      	t.style.top="0",
+		      	t.style.left=0;
+		      	var r=n.style.fontSize.replace("px","")*1;
+		      	Math.abs(t.clientWidth-r)>1&&(e.fontSizeScale=r/t.clientWidth,n.style.fontSize=r*fontSizeScale+"px"),
+		      	document.body.removeChild(t)
+		    },
+		    o=function(t){
+		      	var n=0,
+		      	s=r();
+		      	s?(i(),t&&t instanceof Function&&t()):
+		      	n++<10&&e.setTimeout(o,200)
+		    },
+		  	u="orientationchange"in window?"orientationchange":"resize";
+		  	e.addEventListener(u,function(){e.setTimeout(o,300)},!1),
+		  	e.addEventListener("pageshow",function(t){t.persisted&&e.setTimeout(o,300)},!1),
+		  	t.addEventListener("DOMContentLoaded",function(t){e.setTimeout(function(){o(s)},0)},!1),
+		  	o();
+		}(window)
+    </script>
